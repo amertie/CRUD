@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Set Reminder List{% endblock %}
+
+{% block content %}
+<h2>Set Reminder List</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">Appointment</th>
+      <th scope="col">Reminder Time</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for reminder in reminders %}
+    <tr>
+      <th scope="row">{{ reminder.id }}</th>
+      <td>{{ reminder.appointment.title }}</td>
+      <td>{{ reminder.reminder_time }}</td>
+      <li>{{ reminder.reminder_time }}</li>
+
+      <td>
+        <a href="{% url 'set_reminder_update' reminder.id %}" class="btn btn-primary">Edit</a>
+        <a href="{% url 'set_reminder_delete' reminder.id %}" class="btn btn-danger">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a href="{% url 'set_reminder_create' %}" class="btn btn-success">Add Reminder</a>
+{% endblock %}
